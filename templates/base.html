@@ -1,0 +1,41 @@
+{% extends "public/templates/public_html.html" %}
+
+
+{% block title %}Team-Yonex{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <h1> Tervetuloa Team-Yonex jäsen!</h1>
+            <p>  Näillä sivuilla voi jäsenet muistella menneitä ja suunnitella tulevia. Kokeneet kehäketut voivat myös lisätä uusia jäseniä. Lisätään toimintoja tarpeiden mukaan.</p>
+            <p>  Motto: Eteenpäin!</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block picture %}
+        <div class="col">
+
+            <style type="text/css">
+              body {
+                background: black;
+                color: white;
+              }
+              div.container {
+                max-width: 600px;
+                margin: 100px auto;
+                <!-- border: 20px solid white; -->
+                padding: 10px;
+              }
+              h4 {
+                text-transform: uppercase;
+              }
+            </style>
+          <body>
+            <div class="container">
+              <img src="{{url_for('static', filename='viiri.jpg')}}">
+              <p><small>Pelipaikka: <a href="https://fiu-frederiksberg.dk/hermes-hallen/">Hermeshallen</a></small></p>
+            </div>
+            </body>
+        </div>
+{% endblock %}
