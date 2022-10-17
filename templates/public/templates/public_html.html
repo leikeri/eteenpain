@@ -20,6 +20,11 @@
     function pauseAudio() {
       x.pause();
     }
+    function updateProgress(e) {
+     const { duration, currentTime } = e.target;
+     const progressPercent = (currentTime / duration) * 100;
+     progress.style.width = `${progressPercent}%`;
+}
     x.ontimeupdate = function() {myFunction()};
     function myFunction() {
     // Display the current position of the audio in a p element with id="demo"
@@ -55,20 +60,28 @@
         </li>
             <li class="nav-item">
                 <a class="nav-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-play-fill" viewBox="0 0 16 16" onclick="playAudio()" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-play-fill" viewBox="0 0 16 16" onclick="playAudio()" >
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
                   </svg>
                 </a>
             </li>
-              <span id="demo" class="time">0:00</span>
-              <span id="current-time" class="time">0:00</span>
-                  <input type="range" id="demo" max="100" value="0" ontimeupdate="myFunction()">
-              <span id="demo"></span></p>
-              <span id="duration" class="time">0:00</span>
 
             <li class="nav-item">
                 <a class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pause-btn-fill" viewBox="0 0 16 16" onclick="pauseAudio()">
+                    <div class="audio-container" id="audio-container">
+                        <div class="audio-info">
+                            <div class="progress-container" id="progress-container">
+                                <div class="progress" id="progress"></div>
+                            </div>
+                        </div>
+                    <audio src="static/laulu.mp3" id="audio"></audio>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pause-btn-fill" viewBox="0 0 16 16" onclick="pauseAudio()">
                         <path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6.25-7C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
                     </svg>
                 </a>
@@ -86,6 +99,7 @@
         </div>
 </nav>
 
+  <progress type="range" id="myAudio" max="100" value="10" ontimeupdate="updateProgress()"> </progress>
 
 <style>
 * {
@@ -124,7 +138,7 @@
       </div>
 
 <body>
-
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
  </body>
 </html>
