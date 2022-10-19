@@ -1,55 +1,70 @@
 import helpers
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
-# images = ["C://Users/akija/PycharmProjects/Flask/eteenpain/viiri2.jpg"]
 images = ["/static/viiri.jpg"]
 
 
 @app.route('/')
-def kick_off():  # put application's code here
+def kick_off():
     pic = images[0]
     return render_template("base.html", url=pic)
 
 
-@app.route('/<name>')
-def user(name):
-    # return f'Terve {name}'
-    # taitais olla parempi tehdä jollain java scriptilla tai vastaavaa
-    dict_data = dict()
-    url_sequence = 'data'
-    dict_data[url_sequence] = helpers.read_pickled()
-    return render_template('admin/templates/admin_html.html', web_data=dict_data, url_sequence=url_sequence)
-
-
-@app.route('/admin')
-def admin():
-    # add admin check here
-    # pwd check to gt access to pickle file
-    return redirect(url_for('user', name='Seniori'))
-
-
-@app.route('/admin', methods=['GET'])
+@app.route('/pelaajat', methods=['GET'])
 def get_players():
-    web_indiv = {}
-    url_sequence = 'test'
-    web_indiv[url_sequence] = {'url': 'testabc', 'name': 'hello', 'count': 4}
-    return render_template('admin_html.html', web_data=web_indiv, url_sequence=url_sequence)
+    data_in = helpers.read_pickled()
+    return render_template("/public/templates/pelaajat.html", details=data_in)
 
 
-# add logo. Need to a diff folder?
-# check; https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/ for dockerizing and sql + media
+@app.get('/admin')
+def player_home():
+    data_in = helpers.read_pickled()
+    return render_template("/admin/templates/admin_html.html", details=data_in)
+
+
+# @app.route("pelaajat/add", methods=["POST"])
+@app.post("/admin/add")
+def add_player():
+    title = request.form.get("title")
+    description = request.form.get("description")
+    data = helpers.read_pickled()
+    # estää "tyhjän" nimen talletuksen
+    if len(title) > 0:  # title not in data and. Sallii vanhan nimen paivittamisen
+        data[title] = description
+        helpers.save_pickled(data)
+
+    return redirect(url_for("player_home"))
+
+
+# Ei kaytossa koska uuden pelaajan lisays toimii myos paivittamiseen
+@app.get("/admin/update/<name>")
+def update(name):
+    description = request.form.get("description")
+    data = helpers.read_pickled()
+    data[name] = description
+    helpers.save_pickled(data)
+    return redirect(url_for("player_home"))
+
+
+@app.get("/admin/delete/<name>")
+def delete(name):
+    data = helpers.read_pickled()
+    data.pop(name)
+    helpers.save_pickled(data)
+    return redirect(url_for("player_home"))
 
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
-# host="0.0.0.0" will make the page accessable by going to http://[ip]:5000/ on any computer in the network.
-# app.run(host='0.0.0.0', port=80)
 
 
 """
+Notes / code blocks / links
+# check; https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/ for dockerizing and sql + media
+
 @app.route("/")
 def index():
     url = random.choice(images)
@@ -57,4 +72,15 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    
+    
+# Testing different ways of sending dict()
+@app.route('/<name>')
+def user(name):
+    # return f'Terve {name}' 
+    dict_data = dict()
+    url_sequence = 'data'
+    dict_data[url_sequence] = helpers.read_pickled()
+    return render_template('admin/templates/admin_html.html', web_data=dict_data, url_sequence=url_sequence)
+
 """

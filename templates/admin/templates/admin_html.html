@@ -1,15 +1,51 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kukot</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </head>
+
 <body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Pelaajaluettelo</h1>
 
-<tr>
-    <td class="col-md-2">{{ web_data[url_sequence].Name }}</td>
-    <td class="col-md-2">{{ web_data[url_sequence].Description }}</td>
-</tr>
+        <form class="ui form" action="/admin/add" method="post">
+            <div style="margin-top: 50px;" class="field">
+              <div class="field"></div>
+                <label>Lisää Kukon nimi ja kuvaus</label>
+                <input type="text" name="title" placeholder="Kukon nimi..."><br>
+            </div>
+            <div class="field">
+                <textarea rows="3" name="description" placeholder="Kukon kuvaus..."></textarea>
+            </div>
+            <button class="ui blue button" type="submit">Talleta/Päivitä</button>
+        </form>
 
+        <hr>
+
+        {% for name, kuvaus in details.items() %}
+        <div class="ui segment" style="font-size: x-small;">
+            <p class="ui big header">{{name }} | {{ kuvaus }}</p>
+
+{#
+            {% if True %}
+            <span class="ui gray label">Not Complete</span>
+            {% else %}
+            <span class="ui green label">Completed</span>
+            {% endif %}
+#}
+
+{#
+ <a class="ui blue button" href="/pelaajat/update/{{ name }}">Update</a>
+ #}
+            <a class="ui red button" href="/admin/delete/{{ name }}">Poista</a>
+        </div>
+        {% endfor %}    </div>
 </body>
+
 </html>
