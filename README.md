@@ -1,2 +1,2 @@
 # eteenpain
-Team Yonexin kotisivu projekti
+Team Yonexin kotisivu projekti www.eteenpain.com
