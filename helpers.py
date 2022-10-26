@@ -9,3 +9,12 @@ def read_pickled():
 @staticmethod
 def save_pickled(data):
     pkl.dump(data, open('player_details.p', 'wb'))
+
+
+def get_aws_config():
+    f = open("aws_settings.txt", "r")
+    user = f.readline().rstrip("'\n").lstrip("USER: '")
+    key = f.readline().lstrip("KEY: '")
+    f.close()
+    return user, key[:-1]
+

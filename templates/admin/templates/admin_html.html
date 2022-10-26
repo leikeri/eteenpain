@@ -32,15 +32,7 @@
         <div class="ui segment" style="font-size: x-small;">
             <p class="ui big header">{{name }} | {{ kuvaus }}</p>
 
-{#
-            {% if True %}
-            <span class="ui gray label">Not Complete</span>
-            {% else %}
-            <span class="ui green label">Completed</span>
-            {% endif %}
-#}
-
-{#
+{#  Disabled for the time being...
  <a class="ui blue button" href="/pelaajat/update/{{ name }}">Update</a>
  #}
             <a class="ui red button" href="/admin/delete/{{ name }}">Poista</a>
