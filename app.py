@@ -75,7 +75,7 @@ def delete(name):
     return redirect(url_for("player_home"))
 
 
-@app.route('/tapahtumat')
+@app.route('/tapahtumat', methods=['GET'])
 def tapahtumat_home():
     """ should the pics be downloaded by default here or from the media folders???
         No, iterate over all the items in BUCKETNAME and print them as a media list on the left side of the page
