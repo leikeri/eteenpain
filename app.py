@@ -79,10 +79,6 @@ def delete(name):
 def tapahtumat_home():
     """ should the pics be downloaded by default here or from the media folders???
         No, iterate over all the items in BUCKETNAME and print them as a media list on the left side of the page
-        Then by clicking one of them download all the pics in that folder.
-        Maybe first pic could be loaded by default to the list?
-        @app.get("/tapahtumat/<name>", methods=['get'])
-        def get_media(name)
     """
     folders = dict()
     # 1. authenticate  2. Get temp access token...
