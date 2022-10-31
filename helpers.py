@@ -12,9 +12,9 @@ def save_pickled(data):
 
 
 def get_aws_config():
-    f = open("aws_settings.txt", "r")
+    f = open("C://Users/akija/PycharmProjects/Flask/testuser_aws.txt") #  aws_settings.txt", "r")
     user = f.readline().rstrip("'\n").lstrip("USER: '")
     key = f.readline().lstrip("KEY: '")
     f.close()
-    return user, key[:-1]
+    return user, key
 
