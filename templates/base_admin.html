@@ -1,0 +1,42 @@
+{% extends "admin/templates/admin_html.html" %}
+
+{% block title %} Kukot {% endblock %}
+
+{% block headeri %}
+    <div class="row">
+        <div class="col">
+              <head>
+            <h1 class="tab"> Kukot </h1>
+            </head>
+        </div>
+    </div>
+{% endblock %}
+
+{% block pic %}
+        <div class="col">
+
+            <style type="text/css">
+              body {
+                background: white;
+                color: black;
+              }
+              h1 {
+                  margin-top: 50px;
+              }
+              div.container {
+                max-width: 600px;
+                margin: 10px auto;
+                <!-- border: 20px solid white; -->
+                padding: 10px;
+              }
+              h4 {
+                text-transform: uppercase;
+              }
+            </style>
+          <body>
+            <div class="container">
+              <img src="{{url_for('static', filename='viiri.jpg')}}">
+            </div>
+            </body>
+        </div>
+{% endblock %}
