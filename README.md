@@ -9,6 +9,7 @@ Tested on python 3.8+ version. First, activate your python environment and then 
 ```
 git clone https://github.com/leikeri/eteenpain.git
 cd eteenpain
+install_and_run.bat
 ```
 
 It installs the database used for user logins and registrations. There are additional columns which may be used for user profile pages.
