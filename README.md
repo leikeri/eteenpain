@@ -7,7 +7,7 @@ It supports media folders with downloads/uploads, user login and registration/si
 Tested on python 3.8+ version. First, activate your python environment and then run below commands in command line in your desired directory.
 
 ```
-https://github.com/leikeri/eteenpain.git
+git clone https://github.com/leikeri/eteenpain.git
 install_and_run.bat
 ```
 
