@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+
+{% endfor %}
+
+
+      <div class="row">
+          <div class="col"><br/><br/>
+                 <h1 class="tab">Kirjaudu!</h1>
+                    <br/>
+                    <div class="shadow p-3 mb-5 bg-body rounded freed-width">
+                        <form method="POST" action="/login">
+                            <input type="text" name="username" class="form-control" placeholder="Käyttäjätunnus">
+                            <br/>
+                            <input type="password" name="password" class="form-control" placeholder="Salasana">
+                            <p>Jos et ole vielä rekisteröitynyt, niin <a href="/register"> rekisteröidy</a></p>
+                            <button type="submit" class="btn btn-primary">Kirjaudu</button>
+                        </form>
+                    </div>
+                    <br/>
+          </div>
+      </div>
+{% endblock %}
+
+{% block picture %}
+        <div class="col">
+
+            <style>
+              body {
+                background: white;
+                color: black;
+              }
+              h1 {
+                  margin-top: 50px;
+              }
+              div.container {
+                max-width: 600px;
+                margin: 10px auto;
+                <!-- border: 20px solid white; -->
+                padding: 10px;
+              }
+              h4 {
+                text-transform: uppercase;
+              }
+            </style>
+          <body>
+            <div class="container">
+              <img src="{{url_for('static', filename='viiri.jpg')}}">
+            </div>
+            </body>
+        </div>
+{% endblock %}

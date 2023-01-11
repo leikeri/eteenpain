@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+
+{% endfor %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+
+      <div class="row">
+          <div class="col"><br/><br/>
+                 <h1 class="tab">Rekisteröidy!</h1>
+                    <br/>
+                    <div class="shadow p-3 mb-5 bg-body rounded">
+                        <form method="POST" action="/login">
+                            Käyttäjätunnus<input type="text" name="username" class="form-control" placeholder="Esim. Rooster">
+                            <br/>
+                            E-maili<input type="text" name="email" class="form-control" placeholder="Esim. kukko.kakkonen@teamyonex.com">
+                            <br/>
+                            Anna salasana:    <input type="password" name="password" class="form-control" placeholder="Salasana">
+                            <br/>
+                            Vahvista salasana: <input type="password" name="confirm-password" class="form-control" placeholder="Vahvista salasana">
+                            <p>Jos olet jo rekisteröitynyt, niin <a href="/login"> kirjaudu </a>suoraan sisään</p>
+                            <button type="submit" class="btn btn-primary">Rekisteröidy</button>
+                        </form>
+                    </div>
+                    <br/>
+          </div>
+      </div>
+</body>
+{% endblock %}
+
+{% block picture %}
+        <div class="col">
+
+            <style>
+              body {
+                background: white;
+                color: black;
+              }
+              h1 {
+                  margin-top: 50px;
+              }
+              div.container {
+                max-width: 600px;
+                margin: 10px auto;
+                <!-- border: 20px solid white; -->
+                padding: 10px;
+              }
+              h4 {
+                text-transform: uppercase;
+              }
+            </style>
+          <body>
+            <div class="container">
+              <img src="{{url_for('static', filename='viiri.jpg')}}">
+            </div>
+            </body>
+        </div>
+{% endblock %}
+
+
+</html>

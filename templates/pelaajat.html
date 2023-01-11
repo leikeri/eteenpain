@@ -1,25 +1,29 @@
-{% extends "public/templates/pelaajat.html" %}
+{% extends 'base.html' %}
 
-{% block title %} Kukot {% endblock %}
+{% block content %}
 
-{% block headeri %}
     <div class="row">
-        <div class="col">
-              <head>
-            <h1 class="tab"> Kukot </h1>
-            </head>
-        </div>
-    </div>
+       <div class="col">
+
+            <h1 class="tab">Kukot:</h1>
+
+            {% for name, kuvaus in details.items() %}
+            <div class="ui segment" style="font-size: medium; margin-left: 140px">
+                <p class="ui big header">{{ name }}: </p>
+                <p class="ui big header">{{ kuvaus }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+
+       </div>
+   </div>
+
 {% endblock %}
 
-{% block pic %}
+{% block picture %}
         <div class="col">
 
-            <style type="text/css">
-              body {
-                background: white;
-                color: black;
-              }
+            <style>
               h1 {
                   margin-top: 50px;
               }
@@ -28,9 +32,6 @@
                 margin: 10px auto;
                 <!-- border: 20px solid white; -->
                 padding: 10px;
-              }
-              h4 {
-                text-transform: uppercase;
               }
             </style>
           <body>

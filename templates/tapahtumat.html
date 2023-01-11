@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  img {
+  height: 75vh;
+  width: 100%;
+  object-fit: contain;
+}
+</style>
+
+      <div class="row">
+          <div class="column left">
+                <div class="tab">
+                    <br/><br/>
+                    <h2> Galleria juhlille ja reissuille: </h2>
+                    <div class="container">
+                        {% for url in pic %}
+                        <img src="{{ url }}" />
+                        {% endfor %}
+                    </div>
+
+                 <br>
+                </div>
+          </div>
+      </div>
+
+{% endblock %}
+
+{% block picture %}
+            <br/><br/>
+            <h3> Tapahtumakansiot:</h3>
+            <hr>
+              <nav class="nav flex-column" style="background-color: white !important" style="text-align: left" >
+              {% for folder in message %}
+                  <a class="nav-link" href="/tapahtumat/{{folder }}">{{folder }}</a>
+              {% endfor %}
+              </nav>
+              <hr>
+
+              <div class="card" style="width:250px">
+                  <div class="card-body ">
+                  <form action="/upload" method="post" enctype="multipart/form-data">
+                  <h3>Lisää kuvia</h3>
+                     <label for="f_names">Valitse kansio tai luo alle uusi</label>
+
+                        <input type="text" name="kohde_kansio" list="kansiolista" placeholder="Uuden nimi?">
+                        <datalist id="kansiolista">
+                             {% for folder in message %}
+                                <option value={{folder }}>
+                             {% endfor %}
+                        </datalist>
+                      <br><br>
+
+                    <input type="file" name="file" value="Kansiot">
+                    <hr>
+                  <input type="submit" name="upload" value="Talleta" class="btn btn-success">
+                  </form>
+                  </div>
+              </div>
+
+{% endblock %}

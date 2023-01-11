@@ -1,21 +1,26 @@
-{% extends "admin/templates/admin_html.html" %}
+{% extends 'base.html' %}
 
-{% block title %} Kukot {% endblock %}
+{% block content %}
 
-{% block headeri %}
     <div class="row">
         <div class="col">
               <head>
-            <h1 class="tab"> Kukot </h1>
+                <h1 class="tab"> Tervetuloa Team-Yonex jäsen!</h1>
+                <p class="tab"> Näillä sivuilla voi jäsenet muistella menneitä ja suunnitella tulevia.
+                    Kokeneet kehäketut voivat myös lisätä uusia jäseniä. </p>
+                <p class="tab"> Lisätään toimintoja tarpeiden mukaan.</p>
+                <p class="tab"> Pelipaikkana toimii: <a href="https://fiu-frederiksberg.dk/hermes-hallen/">Hermeshallen</a></p>
+                <p class="tab"> Historiaa...</p>
             </head>
         </div>
     </div>
+
 {% endblock %}
 
-{% block pic %}
+{% block picture %}
         <div class="col">
 
-            <style type="text/css">
+            <style>
               body {
                 background: white;
                 color: black;
