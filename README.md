@@ -12,5 +12,7 @@ cd eteenpain
 install_and_run.bat
 ```
 
-It installs the database used for user logins and registrations. There are additional columns which may be used for user profile pages.
+It installs required modules to your environment and the database used for user logins and registrations. There are additional columns which may be used for user profile pages.
+
+Webpage www.eteenpain.com currently runs on linux server and some changes had to be made in order to get it up and running. For example, path definitions in helper.py file had to be modified. Also, route('/home') didn't work via index route('/'). It was circumvented by replacing index blueprint with route('/') with the main route('/') with kick_off-function, which renders the home template "koti.html".
 
