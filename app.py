@@ -12,7 +12,7 @@ from register import register
 from home import home
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret_key_to_be_read_from_environment_variables_for_example'
+app.config['SECRET_KEY'] = 'Valvoja'  # 'secret_key_to_be_read_from_environment_variables_for_example'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../yonex.db'
 
 login_manager = LoginManager()
@@ -21,7 +21,7 @@ db.init_app(app)
 app.app_context().push()
 login_manager.login_view = "login.show"
 
-app.register_blueprint(index)
+# app.register_blueprint(index)
 app.register_blueprint(login)
 app.register_blueprint(logout)
 app.register_blueprint(register)
@@ -33,14 +33,12 @@ def load_user(user_id):
     return Users.query.get(int(user_id))
 
 
-images = ["/static/viiri.jpg"]
 folders = dict()
 
 
 @app.route('/')
 def kick_off():
-    pic = images[0]
-    return render_template("koti.html", url=pic)
+    return render_template("koti.html")
 
 
 @app.route('/pelaajat', methods=['GET'])
@@ -68,6 +66,9 @@ def add_player():
             hp.save_pickled(data)
         flash('Pelaaja lisätty')
         return redirect(url_for("player_home"))
+    else:
+        flash('Tarvitset ison Kukon oikeudet')
+        return redirect(url_for("player_home"))
 
 
 # Ei kaytossa koska uuden pelaajan lisays toimii myos paivittamiseen
@@ -80,6 +81,9 @@ def update(name):
         data[name] = description
         hp.save_pickled(data)
         return redirect(url_for("player_home"))
+    else:
+        flash('Tarvitset ison Kukon oikeudet')
+        return redirect(url_for("player_home"))
 
 
 @app.get("/admin/delete/<name>")
@@ -89,6 +93,9 @@ def delete(name):
         data = hp.read_pickled()
         data.pop(name)
         hp.save_pickled(data)
+        return redirect(url_for("player_home"))
+    else:
+        flash('Tarvitset ison Kukon oikeudet')
         return redirect(url_for("player_home"))
 
 
@@ -130,7 +137,6 @@ def upload():
             print('nimi on jo kansiossa')
 
         flash('Kuva talletettu!')
-
         return redirect(url_for("get_media", folder=destination_folder))
 
 
@@ -140,3 +146,12 @@ if __name__ == '__main__':
     # from app import db
     # db.create_all()
     app.run(host='0.0.0.0')
+
+
+"""
+# images = ["/static/viiri.jpg"]
+@app.route('/')
+def kick_off():
+    pic = images[0]
+    return render_template("koti.html", url=pic)
+"""

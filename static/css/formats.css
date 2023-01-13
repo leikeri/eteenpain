@@ -1,5 +1,5 @@
 .tab {
-      margin-left: 140px;
+      margin-left: 100px;
   }
 
  .navbar {
@@ -16,10 +16,13 @@
   margin-inside: 140px;
   font-size: large;
 }
-
-* {
-box-sizing: border-box;
+h1 {
+    margin-top: 60px;
 }
+h2 {
+    margin-top: 60px;
+}
+
 /* Create two unequal columns that floats next to each other */
 .column {
   float: left;
@@ -27,7 +30,7 @@ box-sizing: border-box;
   text-align: start;
 }
 .column.left {
-  width: 73%;
+  width: 75%;
     float: left;
 }
 .column.right {
@@ -40,27 +43,9 @@ row:after {
   display: table;
   clear: both;
 }
-container.img {
-  display: inline-block;
-  vertical-align: middle;
-  horiz-align: left;
-  height: auto;
-  max-width: 10px;
+.row {
+  max-width: 95%;
 }
-
-.trick {
-  display: inline-block;
-  vertical-align: middle;
-  height: 150px;
-}
-
-.col.h2 {
-  margin-top: 50px;
-}
-.col.h1 {
-  margin-top: 50px;
-}
-
 .button {
     border-radius: 8px;
     background-color: #0095ff;
@@ -76,4 +61,7 @@ input[type=username], input[type=password] {
 }
 form {
     max-width: 70%;
+}
+.div.container {
+    max-width: 90%;
 }

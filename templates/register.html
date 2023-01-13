@@ -2,15 +2,14 @@
 
 {% block content %}
 
-{% for message in get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
 
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  {{ message }}
-	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
-
-{% endfor %}
+    {% endfor %}
 
 <head>
     <meta charset="UTF-8">
@@ -25,7 +24,7 @@
                  <h1 class="tab">Rekisteröidy!</h1>
                     <br/>
                     <div class="shadow p-3 mb-5 bg-body rounded">
-                        <form method="POST" action="/login">
+                        <form method="POST" action="/register">
                             Käyttäjätunnus<input type="text" name="username" class="form-control" placeholder="Esim. Rooster">
                             <br/>
                             E-maili<input type="text" name="email" class="form-control" placeholder="Esim. kukko.kakkonen@teamyonex.com">

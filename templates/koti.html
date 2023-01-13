@@ -2,15 +2,31 @@
 
 {% block content %}
 
+    {% for message in get_flashed_messages() %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endfor %}
+
     <div class="row">
         <div class="col">
               <head>
-                <h1 class="tab"> Tervetuloa Team-Yonex jäsen!</h1>
+
+                {% if current_user.is_authenticated %}
+                        <h1 class="tab"> Tervetuloa {{ user }} Team-Yonexin kotisivuille!</h1>
+                {% else %}
+                    <h1 class="tab"> Tervetuloa Team-Yonexin kotisivuille!</h1>
+                {% endif %}
+
                 <p class="tab"> Näillä sivuilla voi jäsenet muistella menneitä ja suunnitella tulevia.
                     Kokeneet kehäketut voivat myös lisätä uusia jäseniä. </p>
                 <p class="tab"> Lisätään toimintoja tarpeiden mukaan.</p>
                 <p class="tab"> Pelipaikkana toimii: <a href="https://fiu-frederiksberg.dk/hermes-hallen/">Hermeshallen</a></p>
                 <p class="tab"> Historiaa...</p>
+
             </head>
         </div>
     </div>
@@ -25,23 +41,25 @@
                 background: white;
                 color: black;
               }
-              h1 {
-                  margin-top: 50px;
-              }
               div.container {
-                max-width: 600px;
+                max-width: 100%;
                 margin: 10px auto;
-                <!-- border: 20px solid white; -->
-                padding: 10px;
+                <!-- border: 0px solid white; -->
+                padding: 0px;
               }
               h4 {
                 text-transform: uppercase;
               }
             </style>
+
           <body>
+
             <div class="container">
               <img src="{{url_for('static', filename='viiri.jpg')}}">
             </div>
-            </body>
+
+          </body>
+
         </div>
+
 {% endblock %}
