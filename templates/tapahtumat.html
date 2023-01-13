@@ -2,14 +2,6 @@
 
 {% block content %}
 
-    <style>
-  img {
-  height: 80vh;
-  width: 100%;
-  object-fit: contain;
-}
-</style>
-
     {% for message in get_flashed_messages() %}
 
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -25,7 +17,14 @@
                     <h2> Galleria juhlille ja reissuille: </h2>
                     <div class="container">
                         {% for url in pic %}
-                        <img src="{{ url }}" />
+                            {% if url.endswith(".mp4") or url.endswith(".avi") %}
+                                <video width="320" height="240" controls>
+                                <source src={{ url }}>
+                                Your browser does not support the video tag.
+                                </video>
+                            {% else %}
+                            <img src="{{ url }}" />
+                            {% endif %}
                         {% endfor %}
                     </div>
 

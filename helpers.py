@@ -51,6 +51,8 @@ def get_images(image_folder):
     images = ["/static/pics/" + image_folder + "/" + img for img in os.listdir(fin_folder)
               if img.endswith(".jpg") or
               img.endswith(".jpeg") or
-              img.endswith("png") or
-              img.endswith("PNG")]
+              img.endswith(".png") or
+              img.endswith(".PNG") or
+              img.endswith(".mp4") or
+              img.endswith(".avi")]
     return images

@@ -62,6 +62,13 @@ input[type=username], input[type=password] {
 form {
     max-width: 70%;
 }
-.div.container {
-    max-width: 90%;
+img {
+  height: 80vh;
+  width: 100%;
+  object-fit: contain;
+  }
+video {
+  height: 80vh;
+  width: 100%;
+  object-fit: contain;
 }
